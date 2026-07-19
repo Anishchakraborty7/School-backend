@@ -81,5 +81,10 @@ export const config = {
   rateLimit: {
     windowMs: parseInt(get('RATE_LIMIT_WINDOW_MS') || '60000', 10), // 1 min default
     max: parseInt(get('RATE_LIMIT_MAX') || '10000', 10), // 10000 requests default
+  },
+  cloudinary: {
+    cloudName: get('CLOUDINARY_CLOUD_NAME') || '',
+    apiKey: get('CLOUDINARY_API_KEY') || '',
+    apiSecret: get('CLOUDINARY_API_SECRET') || '',
   }
 };

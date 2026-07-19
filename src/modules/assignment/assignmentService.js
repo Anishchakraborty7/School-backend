@@ -113,7 +113,7 @@ class AssignmentService {
 
     if (files && files.length > 0) {
       const mappedFiles = files.map(f => ({
-        file_path: `uploads/student_docs/${f.filename}`,
+        file_path: f.path,
         file_size: f.size,
         file_type: f.mimetype
       }));

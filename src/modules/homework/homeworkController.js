@@ -14,7 +14,7 @@ export const createHomework = asyncHandler(async (req, res) => {
     browser: req.headers['user-agent'] || 'Unknown Browser'
   };
 
-  const attachmentPath = req.file ? `uploads/student_docs/${req.file.filename}` : null;
+  const attachmentPath = req.file ? req.file.path : null;
 
   const result = await homeworkService.createHomework(
     {
@@ -61,7 +61,7 @@ export const submitHomework = asyncHandler(async (req, res) => {
     browser: req.headers['user-agent'] || 'Unknown Browser'
   };
 
-  const filePath = req.file ? `uploads/student_docs/${req.file.filename}` : null;
+  const filePath = req.file ? req.file.path : null;
   const fileSize = req.file ? req.file.size : null;
   const fileType = req.file ? req.file.mimetype : null;
 

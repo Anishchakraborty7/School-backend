@@ -347,10 +347,10 @@ export const updateMyPhoto = asyncHandler(async (req, res) => {
 
   let photoPath = '';
   if (role === 'student') {
-    photoPath = `uploads/student_photos/${req.file.filename}`;
+    photoPath = req.file.path;
     await pool.query('UPDATE students SET photo = ? WHERE user_id = ?', [photoPath, userId]);
   } else if (role === 'teacher') {
-    photoPath = `uploads/teacher_photos/${req.file.filename}`;
+    photoPath = req.file.path;
     await pool.query('UPDATE teachers SET photo = ? WHERE user_id = ?', [photoPath, userId]);
   } else {
     return response.sendError(res, 'Access Denied', ['Only student or teacher profiles support photo updates.'], 400);

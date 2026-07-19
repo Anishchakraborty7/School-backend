@@ -14,7 +14,7 @@ export const createAssignment = asyncHandler(async (req, res) => {
     browser: req.headers['user-agent'] || 'Unknown Browser'
   };
 
-  const attachmentPath = req.file ? `uploads/student_docs/${req.file.filename}` : null;
+  const attachmentPath = req.file ? req.file.path : null;
 
   const result = await assignmentService.createAssignment(
     {

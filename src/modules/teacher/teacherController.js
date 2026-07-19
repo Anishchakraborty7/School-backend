@@ -14,7 +14,7 @@ export const addTeacher = asyncHandler(async (req, res) => {
 
   const teacherData = { ...req.body };
   if (req.file) {
-    teacherData.photo = `uploads/teacher_photos/${req.file.filename}`;
+    teacherData.photo = req.file.path;
   }
 
   const result = await teacherService.addTeacher(teacherData, adminId, clientInfo);
@@ -32,7 +32,7 @@ export const editTeacher = asyncHandler(async (req, res) => {
 
   const teacherData = { ...req.body };
   if (req.file) {
-    teacherData.photo = `uploads/teacher_photos/${req.file.filename}`;
+    teacherData.photo = req.file.path;
   }
 
   const result = await teacherService.editTeacher(parseInt(id, 10), teacherData, adminId, clientInfo);
@@ -129,7 +129,7 @@ export const uploadTeacherDocEndpoint = asyncHandler(async (req, res) => {
     teacher_id: parseInt(id, 10),
     document_type,
     document_name: req.file.originalname,
-    file_path: `uploads/teacher_docs/${req.file.filename}`,
+    file_path: req.file.path,
     file_size: req.file.size,
     file_type: req.file.mimetype
   };

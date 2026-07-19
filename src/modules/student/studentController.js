@@ -29,7 +29,7 @@ export const admitStudent = asyncHandler(async (req, res) => {
   }
 
   if (req.file) {
-    studentData.photo = `uploads/student_photos/${req.file.filename}`;
+    studentData.photo = req.file.path;
   }
 
   const result = await studentService.admitStudent(studentData, guardianData, adminId, clientInfo);
@@ -57,7 +57,7 @@ export const editStudent = asyncHandler(async (req, res) => {
   }
 
   if (req.file) {
-    studentData.photo = `uploads/student_photos/${req.file.filename}`;
+    studentData.photo = req.file.path;
   }
 
   const result = await studentService.editStudent(parseInt(id, 10), studentData, guardianData, adminId, clientInfo);
@@ -118,7 +118,7 @@ export const uploadStudentDocEndpoint = asyncHandler(async (req, res) => {
     student_id: parseInt(id, 10),
     document_type,
     document_name: req.file.originalname,
-    file_path: `uploads/student_docs/${req.file.filename}`,
+    file_path: req.file.path,
     file_size: req.file.size,
     file_type: req.file.mimetype
   };
